@@ -1,0 +1,74 @@
+#--------
+#Shopping List
+#October 6 2021
+#Graden rusk
+#--------
+
+##----Dictionaries----##
+Item = {}#these two make the two lists
+Cost = {}
+
+##----Functions start here----##
+
+def Add():#Adding function
+    adding = input("What item do you want to add?(Say 'Nothing' to end adding)\n>>>" ).lower()
+    if adding == 'nothing' or adding == 'Nothing':# if you awnser Adding it goes to the start funct
+        Start()
+    else:
+        Item[adding] = (adding)#allows you to add something to the item list
+        cost = float(input("How mch does it cost?\n>>>" ))#asks the cost
+        Cost[cost] = (cost)#adds costs to the cost dict
+        Add()#starts the Add fuct again
+        
+        
+def Delete():
+    print("What do you want to delete from the list?(Say 'Nothing' to end deleting)")
+    print("No capitlos please")
+    delete = input(">>>" )#allows them to type in what they want
+    if delete in Item:#checks for delete in the Item list
+        print(f"{delete} is being deleted.")
+        del Item[delete]#deletes the Item from the list
+    else:
+        start()#uses the start funct
+        
+    cost = float(input("How much does it cost?\n>>>" ))#asks for the cost of the item
+    if cost in Cost:#checks for cost in the list
+        print(f"{cost} is being removed from the total cost.")
+        del Cost[cost]#deletes cost from the list
+        Delete()#starts the delete funct again
+    else:
+        Delete()
+        
+def View():
+    Things = Item.items()#prints out the list
+    print(f"You got {Things}")
+    Total = sum(Cost.values())#addss the sum of the items
+    print(f"The Total is {Total}$")
+    
+    
+def start():#start function
+    play = True # makes play equal true
+    print("Welcome to your Shopping list.")
+    if play == True:#checks to see if play is equal to true
+        print("What would you like to do? Please select a number.")
+        print("""1. Add to the list.
+2. Delete from the list.
+3. View the list.
+4. Quit.""")
+        
+        try:#plays this if options is a number
+            options = int(input(">>>" ))
+            
+            if options == 1:#checks for 1=1
+                Add()#plays Adding function
+            if options == 2:#checks for 2=2
+                Delete()#plays delete funct
+            if options == 3:#checks for 3=3
+                View()#plays View funct
+            else:
+                play == False#will end the list entirely
+                
+        except:
+            start()
+        
+start()
